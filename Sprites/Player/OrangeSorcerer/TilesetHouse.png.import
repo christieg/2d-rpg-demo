@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kbtji2pf55oy"
-path="res://.godot/imported/rpgTile001.png-aee652f6863b65ae1a79942cf8c3646e.ctex"
+uid="uid://d0b31r38tgik"
+path="res://.godot/imported/TilesetHouse.png-695a33fc61a47fd287d4bf1bbc56d1f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tiles/rpgTile001.png"
-dest_files=["res://.godot/imported/rpgTile001.png-aee652f6863b65ae1a79942cf8c3646e.ctex"]
+source_file="res://Sprites/Player/OrangeSorcerer/TilesetHouse.png"
+dest_files=["res://.godot/imported/TilesetHouse.png-695a33fc61a47fd287d4bf1bbc56d1f4.ctex"]
 
 [params]
 
