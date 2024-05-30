@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 
@@ -21,20 +22,29 @@ var facingDir : Vector2 = Vector2()
 
 @onready var rayCast = get_node("RayCast2D")
 @onready var anim = get_node("AnimatedSprite2D")
+@onready var state_machine: Node = $state_machine
+@onready var animation_controller : PlayerAnimationController = $player_animation_controller
+
+func _ready() -> void:
+	animation_controller.init(self)
+	state_machine.init(self, animation_controller)
+
+# called to handle input
+func _unhandled_input(event: InputEvent) -> void:
+	state_machine.process_input(event)
+
+
+func _physics_process(delta: float) -> void:
+	state_machine.process_physics(delta)
+
+
+func _process(delta: float) -> void:
+	state_machine.process_frame(delta)
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
-func _physics_process(_delta):
-#	# Add the gravity.
-#	if not is_on_floor():
-#		velocity.y += gravity * delta
-
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
+func get_input():
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var x_dir = Input.get_axis("ui_left", "ui_right")
@@ -47,11 +57,17 @@ func _physics_process(_delta):
 			facingDir = Vector2(x_dir, 0)
 	else: # stop moving
 		velocity = Vector2(0,0)
+	## Handle Jump.
+	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+	#	# Add the gravity.
+	#	if not is_on_floor():
+	#		velocity.y += gravity * delta
 
-
-	move_and_slide()
-	
-	manage_animations()
+#func _physics_process(_delta):
+	#get_input()
+	#move_and_slide()
+	#manage_animations()
 	
 func manage_animations ():
 	# if moving

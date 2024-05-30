@@ -48,6 +48,7 @@ interact={
 ]
 }
 
-[rendering]
+[layer_names]
 
-renderer/rendering_method="mobile"
+2d_physics/layer_1="Player"
+2d_physics/layer_4="Trigger"

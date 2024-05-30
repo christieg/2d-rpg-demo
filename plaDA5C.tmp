@@ -1,0 +1,159 @@
+[gd_scene load_steps=25 format=3 uid="uid://bn70lylgsenm0"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ca6qa"]
+[ext_resource type="Texture2D" uid="uid://br1ocf2cctjra" path="res://Sprites/Player/OrangeSorcerer/test1.png" id="2_6ch4v"]
+[ext_resource type="Texture2D" uid="uid://b874g10lg7nh7" path="res://Sprites/Player/OrangeSorcerer/test15.png" id="3_ldi7i"]
+[ext_resource type="Texture2D" uid="uid://csqcwu22lnpnf" path="res://Sprites/Player/OrangeSorcerer/test22.png" id="4_jjpjm"]
+[ext_resource type="Texture2D" uid="uid://cf5ttwbhkcvw1" path="res://Sprites/Player/OrangeSorcerer/test8.png" id="5_jby0e"]
+[ext_resource type="Texture2D" uid="uid://cfcwf4fym27as" path="res://Sprites/Player/OrangeSorcerer/test2.png" id="6_n22t2"]
+[ext_resource type="Texture2D" uid="uid://fr0n4vkasju3" path="res://Sprites/Player/OrangeSorcerer/test3.png" id="7_1jqw3"]
+[ext_resource type="Texture2D" uid="uid://bqwbrxcehpxou" path="res://Sprites/Player/OrangeSorcerer/test4.png" id="8_ak0t5"]
+[ext_resource type="Texture2D" uid="uid://cdwudm1qynohv" path="res://Sprites/Player/OrangeSorcerer/test5.png" id="9_4m4fk"]
+[ext_resource type="Texture2D" uid="uid://cnke22ero4kau" path="res://Sprites/Player/OrangeSorcerer/test16.png" id="10_0enik"]
+[ext_resource type="Texture2D" uid="uid://dltpexhyaqkoh" path="res://Sprites/Player/OrangeSorcerer/test17.png" id="11_anbxi"]
+[ext_resource type="Texture2D" uid="uid://cpxksixihoxp3" path="res://Sprites/Player/OrangeSorcerer/test18.png" id="12_vw6eo"]
+[ext_resource type="Texture2D" uid="uid://bwifcdhqua2pu" path="res://Sprites/Player/OrangeSorcerer/test23.png" id="13_ejil5"]
+[ext_resource type="Texture2D" uid="uid://cgd1087f313v0" path="res://Sprites/Player/OrangeSorcerer/test24.png" id="14_m4tic"]
+[ext_resource type="Texture2D" uid="uid://cbod0auvlasef" path="res://Sprites/Player/OrangeSorcerer/test25.png" id="15_27jrn"]
+[ext_resource type="Texture2D" uid="uid://bh71g7vbbllnk" path="res://Sprites/Player/OrangeSorcerer/test9.png" id="16_jp7m1"]
+[ext_resource type="Texture2D" uid="uid://ccch1frf5qmfu" path="res://Sprites/Player/OrangeSorcerer/test10.png" id="17_p6pow"]
+[ext_resource type="Texture2D" uid="uid://5pnncjtxom7i" path="res://Sprites/Player/OrangeSorcerer/test11.png" id="18_drsxn"]
+[ext_resource type="Script" path="res://state_machine.gd" id="19_hvpjm"]
+[ext_resource type="Script" path="res://idle.gd" id="20_xpcnm"]
+[ext_resource type="Script" path="res://move.gd" id="21_cc0wx"]
+[ext_resource type="Script" path="res://player_animation_controller.gd" id="22_i1d5p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rgqjf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6ch4v")
+}],
+"loop": true,
+"name": &"IdleDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ldi7i")
+}],
+"loop": true,
+"name": &"IdleLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jjpjm")
+}],
+"loop": true,
+"name": &"IdleRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jby0e")
+}],
+"loop": true,
+"name": &"IdleUp",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_n22t2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1jqw3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ak0t5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4m4fk")
+}],
+"loop": true,
+"name": &"MoveDown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ldi7i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0enik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_anbxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vw6eo")
+}],
+"loop": true,
+"name": &"MoveLeft",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jjpjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ejil5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_m4tic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_27jrn")
+}],
+"loop": true,
+"name": &"MoveRight",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jby0e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jp7m1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_p6pow")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_drsxn")
+}],
+"loop": true,
+"name": &"MoveUp",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlkrt"]
+size = Vector2(50, 20)
+
+[node name="Player" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_ca6qa")
+
+[node name="player_animation_controller" type="Node" parent="CharacterBody2D"]
+script = ExtResource("22_i1d5p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_rgqjf")
+animation = &"MoveRight"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-1, 22)
+shape = SubResource("RectangleShape2D_qlkrt")
+
+[node name="state_machine" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("19_hvpjm")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="CharacterBody2D/state_machine"]
+script = ExtResource("20_xpcnm")
+
+[node name="Move" type="Node" parent="CharacterBody2D/state_machine"]
+script = ExtResource("21_cc0wx")
+animation_name = null
+
+[node name="Talking" type="Node" parent="CharacterBody2D/state_machine"]
