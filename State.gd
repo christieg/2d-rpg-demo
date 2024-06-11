@@ -4,8 +4,9 @@ extends Node
 @export var animation_name: String
 
 ## Hold a reference to the parent so that it can be controlled by the state
-var animations: AnimatedSprite2D
+var animations: PlayerAnimationController
 var entity: Player
+var movement: PlayerMovementController
 
 
 func enter() -> void:
@@ -22,7 +23,6 @@ func process_frame(delta: float) -> State:
 
 func process_physics(delta: float) -> State:
 	return null
-
 
 func play_animation(anim_name):
 	# dont stop playing an animation if it's what we want to see

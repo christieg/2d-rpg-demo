@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjt5w322hd8iu"]
+[gd_scene load_steps=6 format=3 uid="uid://bjt5w322hd8iu"]
 
 [ext_resource type="PackedScene" uid="uid://ns3d01sojls1" path="res://tile_map.tscn" id="3_tsp1m"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yepjd"]
 [ext_resource type="PackedScene" uid="uid://bn70lylgsenm0" path="res://player.tscn" id="4_a1fwq"]
 [ext_resource type="Script" path="res://camera.gd" id="5_fso13"]
 [ext_resource type="Script" path="res://SceneTrigger.gd" id="5_jj5ft"]
@@ -16,11 +15,8 @@ metadata/_edit_horizontal_guides_ = [-715.0]
 [node name="TileMap" parent="." instance=ExtResource("3_tsp1m")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(227, -28)
+position_smoothing_enabled = true
 script = ExtResource("5_fso13")
-
-[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
-script = ExtResource("3_yepjd")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 8

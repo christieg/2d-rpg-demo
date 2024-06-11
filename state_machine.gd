@@ -4,17 +4,17 @@ extends Node
 var starting_state: State
 
 var current_state: State
+signal state_changed(current_state)
 
 # Initialize the state machine by giving each child state a reference to the
 # parent object it belongs to and enter the default starting_state.
-func init(entity: CharacterBody2D, animations: PlayerAnimationController) -> void:
-	# This hands the AnimatedSprite2D to all the states
-	# and parents the states to the player
+func init(entity: CharacterBody2D, animations: PlayerAnimationController, movement: PlayerMovementController) -> void:
+	# This hands references to the player, animation controller, and movement controller to all the states
 	for child in get_children():
+		print("Setting entity and animations for: ", child)
 		child.entity = entity
 		child.animations = animations
-
-
+		child.movement = movement
 	# Initialize to the default state
 	change_state(starting_state)
 
@@ -24,6 +24,7 @@ func change_state(new_state: State) -> void:
 		current_state.exit()
 
 	current_state = new_state
+	state_changed.emit(current_state)
 	current_state.enter()
 	
 # Pass through functions for the Player to call,

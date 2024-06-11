@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bn70lylgsenm0"]
+[gd_scene load_steps=26 format=3 uid="uid://bn70lylgsenm0"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_ca6qa"]
 [ext_resource type="Texture2D" uid="uid://br1ocf2cctjra" path="res://Sprites/Player/OrangeSorcerer/test1.png" id="2_6ch4v"]
@@ -23,9 +23,6 @@
 [ext_resource type="Script" path="res://move.gd" id="21_cc0wx"]
 [ext_resource type="Script" path="res://player_animation_controller.gd" id="22_i1d5p"]
 [ext_resource type="Script" path="res://talking.gd" id="23_h1rka"]
-[ext_resource type="Script" path="res://movement_controller.gd" id="24_rwr5f"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="25_q4tkk"]
-[ext_resource type="Resource" uid="uid://euybd2w0bax" path="res://addons/phantom_camera/examples/resources/tween/player_phantom_camera_2d_tween.tres" id="26_k865i"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rgqjf"]
 animations = [{
@@ -135,46 +132,28 @@ size = Vector2(50, 20)
 
 [node name="Player" type="Node2D"]
 
-[node name="player" type="CharacterBody2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("1_ca6qa")
 
-[node name="player_animations" type="AnimatedSprite2D" parent="player"]
+[node name="player_animations" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_rgqjf")
 animation = &"MoveRight"
 script = ExtResource("22_i1d5p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-1, 22)
 shape = SubResource("RectangleShape2D_qlkrt")
 
-[node name="state_machine" type="Node2D" parent="player" node_paths=PackedStringArray("starting_state")]
+[node name="state_machine" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("starting_state")]
 script = ExtResource("19_hvpjm")
 starting_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="player/state_machine" node_paths=PackedStringArray("move_state")]
+[node name="Idle" type="Node" parent="CharacterBody2D/state_machine"]
 script = ExtResource("20_xpcnm")
-move_state = NodePath("../Move")
 
-[node name="Move" type="Node" parent="player/state_machine" node_paths=PackedStringArray("idle_state")]
+[node name="Move" type="Node" parent="CharacterBody2D/state_machine"]
 script = ExtResource("21_cc0wx")
-idle_state = NodePath("../Idle")
+animation_name = null
 
-[node name="Talking" type="Node" parent="player/state_machine"]
+[node name="Talking" type="Node" parent="CharacterBody2D/state_machine"]
 script = ExtResource("23_h1rka")
-
-[node name="movement_controller" type="Node" parent="player" node_paths=PackedStringArray("player")]
-script = ExtResource("24_rwr5f")
-player = NodePath("..")
-
-[node name="PlayerPhantomCamera2D" type="Node2D" parent="player"]
-unique_name_in_owner = true
-process_priority = -1
-position = Vector2(227, -28)
-script = ExtResource("25_q4tkk")
-priority = 10
-follow_mode = 2
-frame_preview = false
-tween_resource = ExtResource("26_k865i")
-tween_on_load = false
-follow_damping = true
-draw_limits = true
